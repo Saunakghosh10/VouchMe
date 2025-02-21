@@ -1,9 +1,13 @@
-"use client";
+import HeroSection from "@/components/LandingPage/HeroSection";
+import Navbar from "@/components/LandingPage/Navbar";
+import TestimonialsSection from "@/components/LandingPage/TestimonialSection";
 
 export default function Home() {
   return (
-    <div className="text-3xl flex justify-center items-center h-[100vh]">
-      Testimonial App!
-    </div>
+    <main>
+      <Navbar />
+      <HeroSection />
+      <TestimonialsSection />
+    </main>
   );
 }
