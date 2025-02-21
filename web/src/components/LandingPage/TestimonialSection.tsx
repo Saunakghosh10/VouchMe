@@ -20,7 +20,7 @@ const TestimonialsSection = () => {
   ];
 
   return (
-    <div className="bg-[#171717] text-white h-auto pb-40 p-8">
+    <div className="bg-[#171717] text-white h-auto pb-24 md:pb-40 p-8">
       <div className="max-w-6xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Column */}
