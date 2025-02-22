@@ -28,9 +28,11 @@ const FeaturesSection = () => {
 
   return (
     <div className="py-24 px-8 bg-white">
-      <div className="max-w-6xl mx-auto">
+      <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
-          <h2 className="text-4xl font-bold mb-4">Powerful Features</h2>
+          <h2 className="md:text-5xl text-3xl font-bold mb-4">
+            VouchMe Features
+          </h2>
           <p className="text-gray-600 text-lg max-w-3xl mx-auto">
             Everything you need to collect, verify, and showcase authentic
             testimonials on the blockchain

@@ -56,7 +56,7 @@ const HowItWorks = () => {
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-5xl font-bold mb-4">
-            How VouchMe Works
+            How VouchMe Works?
           </h2>
           <p className="text-gray-400 text-xl md:text-lg font-medium">
             Follow these simple steps to start collecting and showcasing

@@ -3,6 +3,7 @@ import Navbar from "@/components/LandingPage/Navbar";
 import TestimonialsSection from "@/components/LandingPage/TestimonialSection";
 import FeaturesSection from "@/components/LandingPage/FeaturesSection";
 import HowItWorks from "@/components/LandingPage/HowItWorks";
+import Footer from "@/components/LandingPage/Footer";
 
 export default function Home() {
   return (
@@ -12,6 +13,7 @@ export default function Home() {
       <TestimonialsSection />
       <FeaturesSection />
       <HowItWorks />
+      <Footer />
     </main>
   );
 }
