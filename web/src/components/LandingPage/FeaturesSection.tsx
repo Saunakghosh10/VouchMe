@@ -7,7 +7,7 @@ const FeaturesSection = () => {
       icon: Plus,
       title: "Easy Collection",
       description:
-        "Simple one-click process for clients to leave verified testimonials through your personalized link.",
+        "Simple one-click process for people to leave verified testimonials through your personalized link.",
       iconBg: "bg-indigo-600",
     },
     {

@@ -9,29 +9,29 @@ const HowItWorks = () => {
       icon: Plus,
       title: "Create Collection",
       description:
-        "Set up your personalized testimonial collection page with custom branding and requirements.",
+        "Set up your personalized testimonial collection page with your address.",
       additionalContent: (
         <div className="mt-4 bg-[#404040] rounded p-3">
-          <code className="text-gray-400">vouch.me/[your-name]</code>
+          <code className="text-gray-400">vouch.me/[your-address]</code>
         </div>
       ),
     },
     {
       number: "2",
       icon: Files,
-      title: "Share & Collect",
+      title: "Create Signed Testimonials",
       description:
-        "Share your unique link with clients. They can easily submit testimonials through the platform.",
+        "Testimonial givers can visit your link, create a signed testimonial, and share it directly with you via personal messaging apps.",
       additionalContent: (
         <div className="mt-4 flex gap-2">
+          <span className="bg-[#404040] px-3 py-1 rounded text-gray-300 text-sm">
+            WhatsApp
+          </span>
           <span className="bg-[#404040] px-3 py-1 rounded text-gray-300 text-sm">
             Email
           </span>
           <span className="bg-[#404040] px-3 py-1 rounded text-gray-300 text-sm">
-            Social
-          </span>
-          <span className="bg-[#404040] px-3 py-1 rounded text-gray-300 text-sm">
-            Direct
+            Direct Link
           </span>
         </div>
       ),
@@ -39,9 +39,9 @@ const HowItWorks = () => {
     {
       number: "3",
       icon: CheckCircle,
-      title: "Showcase & Verify",
+      title: "Load & Showcase",
       description:
-        "Display your verified testimonials anywhere. Each testimonial includes blockchain verification.",
+        "Load the signed testimonial onto your account to display it. Each testimonial is blockchain-secured.",
       additionalContent: (
         <div className="mt-4 flex items-center gap-2">
           <div className="w-2 h-2 bg-green-500 rounded-full"></div>

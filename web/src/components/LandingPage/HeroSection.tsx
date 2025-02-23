@@ -9,7 +9,7 @@ const HeroSection = () => {
       </h1>
 
       <p className="text-lg md:text-xl text-gray-300 mb-12 max-w-3xl">
-        Collect, secure, and showcase authentic client testimonials to enhance
+        Collect, secure, and showcase authentic testimonials to enhance
         reputation and accelerate growth.
       </p>
 
