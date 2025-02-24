@@ -23,7 +23,7 @@ const HowItWorks = () => {
       description:
         "Testimonial givers can visit your link, create a signed testimonial, and share it directly with you via personal messaging apps.",
       additionalContent: (
-        <div className="mt-4 flex gap-2">
+        <div className="mt-4 flex gap-2 flex-wrap">
           <span className="bg-[#404040] px-3 py-1 rounded text-gray-300 text-sm">
             WhatsApp
           </span>
