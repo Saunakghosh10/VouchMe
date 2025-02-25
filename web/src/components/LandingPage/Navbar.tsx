@@ -3,6 +3,8 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
+import { ConnectButton } from "@rainbow-me/rainbowkit";
+import { useAccount } from "wagmi";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -14,6 +16,8 @@ const Navbar = () => {
       setIsOpen(false);
     }
   };
+
+  const { address } = useAccount();
 
   return (
     <nav className="bg-[#171717]">
@@ -38,9 +42,10 @@ const Navbar = () => {
             >
               About Us
             </button>
-            <button className="px-6 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg font-medium transition-colors">
+            {/* <button className="px-6 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg font-medium transition-colors">
               Connect Wallet
-            </button>
+            </button> */}
+            <ConnectButton />
           </div>
 
           {/* Mobile Menu Button */}
