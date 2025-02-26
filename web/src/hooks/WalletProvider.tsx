@@ -10,15 +10,30 @@ import "@rainbow-me/rainbowkit/styles.css";
 
 const queryClient = new QueryClient();
 
-export function WalletProvider({ children }: { children: ReactNode }) {
-  const [useEnhancedConfig, setUseEnhancedConfig] = useState(false);
+// Helper function to safely get localStorage value during SSR
+const getInitialEnhancedConfig = () => {
+  // Check if we're in browser environment
+  if (typeof window !== "undefined") {
+    return localStorage.getItem("useEnhancedConfig") === "true";
+  }
+  return false;
+};
 
-  // Load saved preference on mount
+export function WalletProvider({ children }: { children: ReactNode }) {
+  // Initialize state with the value from localStorage directly
+  const [useEnhancedConfig, setUseEnhancedConfig] = useState(() =>
+    getInitialEnhancedConfig()
+  );
+
+  // Effect to handle initialization
   useEffect(() => {
+    // Double-check localStorage on mount (useful for SSR)
     const savedPreference =
       localStorage.getItem("useEnhancedConfig") === "true";
-    setUseEnhancedConfig(savedPreference);
-  }, []);
+    if (savedPreference !== useEnhancedConfig) {
+      setUseEnhancedConfig(savedPreference);
+    }
+  }, [useEnhancedConfig]);
 
   // Toggle wallet config
   const toggleWalletConfig = () => {
@@ -27,8 +42,11 @@ export function WalletProvider({ children }: { children: ReactNode }) {
     localStorage.setItem("useEnhancedConfig", newConfigState.toString());
   };
 
+  // Always render with the current config
+  const currentConfig = useEnhancedConfig ? enhancedConfig : publicConfig;
+
   return (
-    <WagmiProvider config={useEnhancedConfig ? enhancedConfig : publicConfig}>
+    <WagmiProvider config={currentConfig}>
       <QueryClientProvider client={queryClient}>
         <RainbowKitProvider
           initialChain={scrollSepolia}
@@ -39,12 +57,11 @@ export function WalletProvider({ children }: { children: ReactNode }) {
             overlayBlur: "small",
           })}
         >
-          {/* ✅ Navbar with Toggle Functionality */}
+          {/* Navbar with Toggle Functionality */}
           <Navbar
             toggleWalletConfig={toggleWalletConfig}
             useEnhancedConfig={useEnhancedConfig}
           />
-
           {children}
         </RainbowKitProvider>
       </QueryClientProvider>
