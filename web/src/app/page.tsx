@@ -8,7 +8,7 @@ import Footer from "@/components/LandingPage/Footer";
 export default function Home() {
   return (
     <main>
-      <Navbar />
+      {/* <Navbar /> */}
       <HeroSection />
       <TestimonialsSection />
       <FeaturesSection />

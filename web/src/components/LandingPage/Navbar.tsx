@@ -6,7 +6,13 @@ import { Menu, X } from "lucide-react";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { useAccount } from "wagmi";
 
-const Navbar = () => {
+const Navbar = ({
+  toggleWalletConfig,
+  useEnhancedConfig,
+}: {
+  toggleWalletConfig: () => void;
+  useEnhancedConfig: boolean;
+}) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const scrollToSection = (sectionId: string) => {
@@ -42,9 +48,16 @@ const Navbar = () => {
             >
               About Us
             </button>
-            {/* <button className="px-6 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg font-medium transition-colors">
-              Connect Wallet
-            </button> */}
+
+            {/* Toggle Wallet View Button */}
+            <button
+              onClick={toggleWalletConfig}
+              className="bg-gray-700 hover:bg-gray-800 text-white px-4 py-2 rounded-lg font-medium transition-colors"
+            >
+              {useEnhancedConfig ? "Installed Wallets" : "More Wallets"}
+            </button>
+
+            {/* Connect Wallet Button */}
             <ConnectButton />
           </div>
 
@@ -79,9 +92,17 @@ const Navbar = () => {
               >
                 About Us
               </button>
-              <button className="block md:w-full w-30 text-left px-3 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg font-medium transition-colors">
-                Connect Wallet
+
+              {/* Toggle Wallet View Button (Mobile) */}
+              <button
+                onClick={toggleWalletConfig}
+                className="block w-full text-left px-3 py-2 bg-gray-700 hover:bg-gray-800 text-white rounded-lg font-medium transition-colors"
+              >
+                {useEnhancedConfig ? "Installed Wallets" : "More Wallets"}
               </button>
+
+              {/* Connect Wallet Button */}
+              <ConnectButton />
             </div>
           </div>
         )}

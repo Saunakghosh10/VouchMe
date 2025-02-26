@@ -1,9 +1,11 @@
-import { http } from "wagmi";
+import { createConfig, http } from "wagmi";
+import { getDefaultConfig } from "@rainbow-me/rainbowkit";
 import { mainnet, polygon, scrollSepolia } from "wagmi/chains";
-import { createConfig } from "wagmi";
-import { citreaTestnet } from "@/components/CitreaTestnet";
-import { ethereumClassic } from "@/components/EthereumClassic";
-import { milkomeda } from "@/components/Milkomeda";
+
+// Custom chains
+import { ethereumClassic } from "@/utils/chains/EthereumClassic";
+import { milkomeda } from "@/utils/chains/Milkomeda";
+import { citreaTestnet } from "@/utils/chains/CitreaTestnet";
 
 const chains = [
   scrollSepolia,
@@ -14,11 +16,10 @@ const chains = [
   milkomeda,
 ] as const;
 
-// Create wagmi config with public provider
-export const config = createConfig({
+// Default config without API key (browser wallets only)
+export const publicConfig = createConfig({
   chains,
   transports: {
-    // Map each chain to use the public HTTP provider
     [scrollSepolia.id]: http(),
     [polygon.id]: http(),
     [mainnet.id]: http(),
@@ -26,4 +27,13 @@ export const config = createConfig({
     [ethereumClassic.id]: http(),
     [milkomeda.id]: http(),
   },
+});
+
+// Config with API key (more wallets)
+const projectId = process.env.NEXT_PUBLIC_PROJECT_ID ?? "";
+export const enhancedConfig = getDefaultConfig({
+  appName: "VouchMe",
+  projectId,
+  chains,
+  ssr: true,
 });

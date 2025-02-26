@@ -1,21 +1,34 @@
 "use client";
-
-import React, { ReactNode } from "react";
-import { config } from "@/utils/config";
+import React, { ReactNode, useState, useEffect } from "react";
+import { WagmiProvider } from "wagmi";
 import { RainbowKitProvider, darkTheme } from "@rainbow-me/rainbowkit";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { WagmiProvider } from "wagmi";
 import { scrollSepolia } from "wagmi/chains";
-
-// Import RainbowKit styles
+import { publicConfig, enhancedConfig } from "@/utils/config";
+import Navbar from "@/components/LandingPage/Navbar";
 import "@rainbow-me/rainbowkit/styles.css";
 
-// Create a client
 const queryClient = new QueryClient();
 
 export function WalletProvider({ children }: { children: ReactNode }) {
+  const [useEnhancedConfig, setUseEnhancedConfig] = useState(false);
+
+  // Load saved preference on mount
+  useEffect(() => {
+    const savedPreference =
+      localStorage.getItem("useEnhancedConfig") === "true";
+    setUseEnhancedConfig(savedPreference);
+  }, []);
+
+  // Toggle wallet config
+  const toggleWalletConfig = () => {
+    const newConfigState = !useEnhancedConfig;
+    setUseEnhancedConfig(newConfigState);
+    localStorage.setItem("useEnhancedConfig", newConfigState.toString());
+  };
+
   return (
-    <WagmiProvider config={config}>
+    <WagmiProvider config={useEnhancedConfig ? enhancedConfig : publicConfig}>
       <QueryClientProvider client={queryClient}>
         <RainbowKitProvider
           initialChain={scrollSepolia}
@@ -26,6 +39,12 @@ export function WalletProvider({ children }: { children: ReactNode }) {
             overlayBlur: "small",
           })}
         >
+          {/* ✅ Navbar with Toggle Functionality */}
+          <Navbar
+            toggleWalletConfig={toggleWalletConfig}
+            useEnhancedConfig={useEnhancedConfig}
+          />
+
           {children}
         </RainbowKitProvider>
       </QueryClientProvider>
