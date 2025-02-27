@@ -5,103 +5,6 @@ import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { useAccount } from "wagmi";
-import Image from "next/image";
-
-//Custom Connect Button for different texts
-const CustomConnectButton = ({
-  useEnhancedConfig,
-  isMobile = false,
-}: {
-  useEnhancedConfig: boolean;
-  isMobile?: boolean;
-}) => {
-  return (
-    <ConnectButton.Custom>
-      {({
-        account,
-        chain,
-        openAccountModal,
-        openChainModal,
-        openConnectModal,
-        mounted,
-      }) => {
-        const ready = mounted;
-        const connected = ready && account && chain;
-
-        return (
-          <div
-            {...(!ready && {
-              "aria-hidden": true,
-              style: {
-                opacity: 0,
-                pointerEvents: "none",
-                userSelect: "none",
-              },
-            })}
-          >
-            {!connected ? (
-              <button
-                onClick={openConnectModal}
-                className="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg font-bold transition-colors w-auto md:w-full"
-              >
-                {useEnhancedConfig
-                  ? "Connect Advanced Wallet"
-                  : "Connect Local Wallet"}
-              </button>
-            ) : chain.unsupported ? (
-              <button
-                onClick={openChainModal}
-                className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg font-medium transition-colors w-full"
-              >
-                Wrong network
-              </button>
-            ) : (
-              <div
-                className={`${isMobile ? "flex-col space-y-2" : "flex gap-3"}`}
-              >
-                <button
-                  onClick={openChainModal}
-                  className="flex items-center bg-gray-800 hover:bg-gray-700 text-white px-3 py-2 rounded-lg font-medium transition-colors"
-                >
-                  {chain.hasIcon && (
-                    <div
-                      style={{
-                        background: chain.iconBackground,
-                        width: 16,
-                        height: 16,
-                        borderRadius: 999,
-                        overflow: "hidden",
-                        marginRight: 4,
-                      }}
-                    >
-                      {chain.iconUrl && (
-                        <Image
-                          alt={chain.name ?? "Chain icon"}
-                          src={chain.iconUrl}
-                          width={16}
-                          height={16}
-                        />
-                      )}
-                    </div>
-                  )}
-                  {chain.name}
-                </button>
-
-                <button
-                  onClick={openAccountModal}
-                  className="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg font-medium transition-colors"
-                >
-                  {account.displayName}
-                  {account.displayBalance ? ` (${account.displayBalance})` : ""}
-                </button>
-              </div>
-            )}
-          </div>
-        );
-      }}
-    </ConnectButton.Custom>
-  );
-};
 
 const Navbar = ({
   toggleWalletConfig,
@@ -154,13 +57,13 @@ const Navbar = ({
                 className="bg-gray-700 hover:bg-gray-800 text-white px-4 py-2 rounded-lg font-medium transition-colors"
               >
                 {useEnhancedConfig
-                  ? "Use Local Wallets"
-                  : "Use Advanced Wallets"}
+                  ? "Disable ReOwn Wallets"
+                  : "Enable ReOwn Wallets"}
               </button>
             )}
 
-            {/* Custom Connect Wallet Button */}
-            <CustomConnectButton useEnhancedConfig={useEnhancedConfig} />
+            {/* Standard RainbowKit Connect Button */}
+            <ConnectButton />
           </div>
 
           {/* Mobile Menu Button */}
@@ -202,15 +105,15 @@ const Navbar = ({
                   className="block w-auto text-left px-3 py-2 bg-gray-700 hover:bg-gray-800 text-white rounded-lg font-medium transition-colors"
                 >
                   {useEnhancedConfig
-                    ? "Use Local Wallets"
-                    : "Use Advanced Wallets"}
+                    ? "Disable ReOwn Wallets"
+                    : "Enable ReOwn Wallets"}
                 </button>
               )}
 
-              <CustomConnectButton
-                useEnhancedConfig={useEnhancedConfig}
-                isMobile={true}
-              />
+              {/* Standard RainbowKit Connect Button (Mobile) */}
+              <div className="py-2">
+                <ConnectButton />
+              </div>
             </div>
           </div>
         )}

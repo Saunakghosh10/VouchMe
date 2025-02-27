@@ -10,9 +10,8 @@ import "@rainbow-me/rainbowkit/styles.css";
 
 const queryClient = new QueryClient();
 
-// Helper function to safely get localStorage value during SSR
+//Get localStorage value during SSR
 const getInitialEnhancedConfig = () => {
-  // Check if we're in browser environment
   if (typeof window !== "undefined") {
     return localStorage.getItem("useEnhancedConfig") === "true";
   }
@@ -20,7 +19,6 @@ const getInitialEnhancedConfig = () => {
 };
 
 export function WalletProvider({ children }: { children: ReactNode }) {
-  // Initialize state with the value from localStorage directly
   const [useEnhancedConfig, setUseEnhancedConfig] = useState(() =>
     getInitialEnhancedConfig()
   );
@@ -35,7 +33,6 @@ export function WalletProvider({ children }: { children: ReactNode }) {
     }
   }, [useEnhancedConfig]);
 
-  // Toggle wallet config
   const toggleWalletConfig = () => {
     const newConfigState = !useEnhancedConfig;
     setUseEnhancedConfig(newConfigState);
@@ -51,7 +48,7 @@ export function WalletProvider({ children }: { children: ReactNode }) {
         <RainbowKitProvider
           initialChain={scrollSepolia}
           theme={darkTheme({
-            accentColor: "hsl(var(--primary))",
+            accentColor: "#4f46e5",
             accentColorForeground: "white",
             borderRadius: "medium",
             overlayBlur: "small",
