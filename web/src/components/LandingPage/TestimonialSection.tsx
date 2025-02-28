@@ -1,7 +1,7 @@
 import React from "react";
 import { Card, CardContent } from "@/components/ui/card";
 
-const TestimonialsSection = () => {
+const TestimonialsSection = React.memo(() => {
   const testimonials = [
     {
       name: "John Doe",
@@ -73,6 +73,6 @@ const TestimonialsSection = () => {
       </div>
     </div>
   );
-};
+});
 
 export default TestimonialsSection;

@@ -1,7 +1,8 @@
+import React from 'react';
 import { Plus, BarChart2, Lock } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 
-const FeaturesSection = () => {
+const FeaturesSection = React.memo(() => {
   const features = [
     {
       icon: Plus,
@@ -69,6 +70,6 @@ const FeaturesSection = () => {
       </div>
     </div>
   );
-};
+});
 
 export default FeaturesSection;
