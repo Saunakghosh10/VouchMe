@@ -2,6 +2,7 @@ import React from 'react';
 import { Plus, BarChart2, Lock } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 
+// eslint-disable-next-line react/display-name
 const FeaturesSection = React.memo(() => {
   const features = [
     {

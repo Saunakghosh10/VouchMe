@@ -1,6 +1,7 @@
+import React from "react";
 import { Highlight } from "../ui/hero-highlight";
 
-const HeroSection = () => {
+const HeroSectionComponent = () => {
   return (
     <div className="h-auto pt-20 pb-20 md:pb-48 bg-[#171717] flex flex-col items-center justify-center text-center px-4 py-16">
       <h1 className="text-3xl md:text-5xl font-bold text-white mb-8 max-w-3xl !leading-tight">
@@ -26,4 +27,4 @@ const HeroSection = () => {
   );
 };
 
-export default HeroSection;
+export default HeroSectionComponent;

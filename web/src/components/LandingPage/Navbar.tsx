@@ -6,7 +6,9 @@ import { Menu, X } from "lucide-react";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { useAccount } from "wagmi";
 
-const Navbar = ({
+
+// eslint-disable-next-line react/display-name
+const NavbarComponent = React.memo(({
   toggleWalletConfig,
   useEnhancedConfig,
 }: {
@@ -120,6 +122,6 @@ const Navbar = ({
       </div>
     </nav>
   );
-};
+});
 
-export default Navbar;
+export default NavbarComponent;

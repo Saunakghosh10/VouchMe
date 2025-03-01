@@ -2,7 +2,7 @@ import React from "react";
 import { Plus, Files, CheckCircle } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 
-const HowItWorks = () => {
+const HowItWorksComponent = () => {
   const steps = [
     {
       number: "1",
@@ -98,4 +98,4 @@ const HowItWorks = () => {
   );
 };
 
-export default HowItWorks;
+export default HowItWorksComponent;

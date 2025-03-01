@@ -1,7 +1,10 @@
 import React from "react";
 import { Github } from "lucide-react";
 
-const Footer = () => {
+// const Footer = dynamic(() => import('./Footer'), { ssr: false });
+
+const FooterComponent = React.memo(() => {
+  FooterComponent.displayName = 'FooterComponent';
   return (
     <footer id="footer" className="bg-black text-gray-400 py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -94,6 +97,6 @@ const Footer = () => {
       </div>
     </footer>
   );
-};
+});
 
-export default Footer;
+export default FooterComponent;
